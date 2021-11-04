@@ -1,0 +1,108 @@
+{
+  "clg打印": {
+      "prefix": "c_",
+      "body": [
+        "console.log($1);"
+      ],
+      "description": "lg打印"
+  },
+  "hooks-useState": {
+    "prefix": "r_s",
+    "body": [
+      "const [$1, set$2] = useState($3);"
+    ],
+    "description": "react_hooks_useState"
+  },
+  "import react": {
+    "prefix": "ir",
+    "body": [
+      "import React, { useState, useEffect } from 'react';"
+    ],
+    "description": "react引入"
+  },
+  "hooks组件定义": {
+    "prefix": "rh",
+    "body": [
+      "import React, { useState, useEffect } from 'react';",
+      "",
+      "const $1 = ({ }) => {",
+      "  return (",
+      "    <div>test</div>",
+      "  )",
+      "}",
+      "",
+      "export default $1;"
+    ],
+    "description": "react-hooks组件创建"
+  },
+  "检查日期是否有效": {
+    "prefix": "isDate",
+    "body": [
+      "const isDateValid = (...val) => !Number.isNaN(new Date(...val).valueOf());"
+    ],
+    "description": "检查日期是否有效"
+  },
+  "检查两个日期间隔": {
+    "prefix": "dayDif",
+    "body": [
+      "const dayDif = (date1, date2) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)"
+    ],
+    "description": "检查两个日期间隔"
+  },
+  "查找日期位于今年第几天": {
+    "prefix": "dayOfYear",
+    "body": [
+      "const dayOfYear = (date) => Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);"
+    ],
+    "description": "查找日期位于今年第几天"
+  },
+  "时间格式化": {
+    "prefix": "time-date",
+    "body": [
+      "const timeFromDate = date => date.toTimeString().slice(0, 8);"
+    ],
+    "description": "时间格式化"
+  },
+  "字符串首字母大写": {
+    "prefix": "first-Upper",
+    "body": [
+      "const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)"
+    ],
+    "description": "字符串首字母大写"
+  },
+  "去除字符串中的HTML": {
+    "prefix": "s_del_html",
+    "body": [
+      "const stripHtml = html => (new DOMParser().parseFromString(html, 'text/html')).body.textContent || '';"
+    ],
+    "description": "去除字符串中的HTML"
+  },
+  "将RGB转化为十六机制": {
+    "prefix": "rgb-hex",
+    "body": [
+      "const rgbToHex = (r, g, b) => '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);"
+    ],
+    "description": "将RGB转化为十六机制"
+  },
+  "获取随机十六进制颜色": {
+    "prefix": "randomHex",
+    "body": [
+      "const randomHex = () => `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, '0')}`;"
+    ],
+    "description": "获取随机十六进制颜色"
+  },
+  "判断当前是否是苹果设备": {
+    "prefix": "isIos",
+    "body": [
+      "const isAppleDevice = () => /Mac|iPod|iPhone|iPad/.test(navigator.platform);"
+    ],
+    "description": "判断当前是否是苹果设备"
+  },
+  "检测对象是否为空": {
+    "prefix": "isObj",
+    "body": [
+      "const isEmpty = obj => Reflect.ownKeys(obj).length === 0 && obj.constructor === Object;"
+    ],
+    "description": "检测对象是否为空"
+  }
+}
