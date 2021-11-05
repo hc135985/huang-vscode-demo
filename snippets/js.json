@@ -36,73 +36,167 @@
     "description": "react-hooks组件创建"
   },
   "检查日期是否有效": {
-    "prefix": "isDate",
+    "prefix": "h_f_isDate",
     "body": [
       "const isDateValid = (...val) => !Number.isNaN(new Date(...val).valueOf());"
     ],
     "description": "检查日期是否有效"
   },
   "检查两个日期间隔": {
-    "prefix": "dayDif",
+    "prefix": "h_f_dayDif",
     "body": [
       "const dayDif = (date1, date2) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)"
     ],
     "description": "检查两个日期间隔"
   },
   "查找日期位于今年第几天": {
-    "prefix": "dayOfYear",
+    "prefix": "h_f_dayOfYear",
     "body": [
       "const dayOfYear = (date) => Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);"
     ],
     "description": "查找日期位于今年第几天"
   },
   "时间格式化": {
-    "prefix": "time-date",
+    "prefix": "h_f_time-date",
     "body": [
       "const timeFromDate = date => date.toTimeString().slice(0, 8);"
     ],
     "description": "时间格式化"
   },
   "字符串首字母大写": {
-    "prefix": "first-Upper",
+    "prefix": "h_f_first-Upper",
     "body": [
       "const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)"
     ],
     "description": "字符串首字母大写"
   },
   "去除字符串中的HTML": {
-    "prefix": "s_del_html",
+    "prefix": "h_f_s_del_html",
     "body": [
       "const stripHtml = html => (new DOMParser().parseFromString(html, 'text/html')).body.textContent || '';"
     ],
     "description": "去除字符串中的HTML"
   },
   "将RGB转化为十六机制": {
-    "prefix": "rgb-hex",
+    "prefix": "h_f_rgb-hex",
     "body": [
       "const rgbToHex = (r, g, b) => '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);"
     ],
     "description": "将RGB转化为十六机制"
   },
   "获取随机十六进制颜色": {
-    "prefix": "randomHex",
+    "prefix": "h_f_randomHex",
     "body": [
       "const randomHex = () => `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, '0')}`;"
     ],
     "description": "获取随机十六进制颜色"
   },
   "判断当前是否是苹果设备": {
-    "prefix": "isIos",
+    "prefix": "h_f_isIos",
     "body": [
       "const isAppleDevice = () => /Mac|iPod|iPhone|iPad/.test(navigator.platform);"
     ],
     "description": "判断当前是否是苹果设备"
   },
   "检测对象是否为空": {
-    "prefix": "isObj",
+    "prefix": "h_f_isObj",
     "body": [
       "const isEmpty = obj => Reflect.ownKeys(obj).length === 0 && obj.constructor === Object;"
     ],
     "description": "检测对象是否为空"
+  },
+  "防抖": {
+    "prefix": "h_f_debounce",
+    "body": [
+      "const debounce = (func, wait = 0) => {",
+　　　 "  if (typeof func !== 'function') {",
+　　　 "    throw new TypeError('need a function arguments')",
+　　　 "  }",
+　　　 "  let timer = null;",
+      "  let result;",
+　　　 "  return () => {",
+ 　　　"    const context = this;",
+　　　 "    const args = arguments;",
+      "",
+ 　　　"    if (timer) {",
+ 　　　"      clearTimeout(timer);",
+   　 "    }",
+ 　　　"    timer = setTimeout(() => {",
+ 　　　"      result = func.apply(context, args);",
+   　　"    }, wait);",
+   　　"    return result;",
+      "  }",
+      "}"
+    ],
+    "description": "防抖"
+  },
+  "截流": {
+    "prefix": "h_f_throttle",
+    "body": [
+      "const throttle = function(func, delay) {",
+      "  var prev = Date.now();",
+      "　return function() {",
+      "　　var context = this;",
+      "　　var args = arguments;",
+      "　　var now = Date.now();",
+      "　　if (now - prev >= delay) {",
+      "　　　　func.apply(context, args);",
+      "　　　　prev = Date.now();",
+      "　  };",
+      "  };",
+      "};"
+    ],
+    "description": "截流"
+  },
+  "保留小数": {
+    "prefix": "h_f_float",
+    "body": [
+      "function checkFloat(n) {",
+        "return new RegExp(`^([1-9]+[\\d]*(.[0-9]{1,${n}})?)$`)",
+      "}"
+    ],
+    "description": "保留小数"
+  },
+  "手机号正则": {
+    "prefix": "h_r_phone",
+    "body": [
+      "/^1[3-9]\\d{9}$/;"
+    ],
+    "description": "手机号正则"
+  },
+  "身份证正则": {
+    "prefix": "h_r_idCard",
+    "body": [
+      "/^[1-9]{1}[0-9]{14}$|^[1-9]{1}[0-9]{16}([0-9]|[xX])$/;"
+    ],
+    "description": "身份证正则"
+  },
+  "ip正则": {
+    "prefix": "h_r_ip",
+    "body": [
+      "/^(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])$/;"
+    ],
+    "description": "ip正则"
+  },
+  "邮箱正则": {
+    "prefix": "h_r_email",
+    "body": [
+      "/^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$/"
+    ],
+    "description": "邮箱正则"
+  },
+  "url正则": {
+    "prefix": "h_r_url",
+    "body": [
+      "/^((https?|ftp|file):\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$/"
+    ],
+    "description": "url正则"
+  },
+  "密码强度正则": {
+    "prefix": "h_r_password",
+    "body": [
+      "/(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,30}/"
+    ],
+    "description": "url正则"
   }
 }

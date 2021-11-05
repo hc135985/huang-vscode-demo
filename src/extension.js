@@ -4,21 +4,12 @@ const path = require("path");
 const util = require("../utils");
 
 function provideCompletionItems(document, position, token, context) {
-  const line = document.lineAt(position);
-  const projectPath = util.getProjectPath(document);
-  // 只截取到光标位置为止，防止一些特殊情况
-  const lineText = line.text.substring(0, position.character);
-  // 简单匹配，只要当前光标前的字符串为`this.dependencies.`都自动带出所有的依赖
-  if (/(^|=| )\w+\.dependencies\.$/g.test(lineText)) {
-    const json = require(`${projectPath}/package.json`);
-    const dependencies = Object.keys(json.dependencies || {}).concat(
-      Object.keys(json.devDependencies || {})
-    );
-    return dependencies.map((dep) => {
-      // vscode.CompletionItemKind 表示提示的类型
-      return new vscode.CompletionItem(dep, vscode.CompletionItemKind.Field);
-    });
-  }
+  const regList = ['aaaaaaaa'];
+  console.log(regList, 'regList');
+  return regList.map((dep) => {
+    // vscode.CompletionItemKind 表示提示的类型
+    return new vscode.CompletionItem(dep, vscode.CompletionItemKind.Field);
+  });
 }
 /**
  * 光标选中当前自动补全item时触发动作，一般情况下无需处理
@@ -74,10 +65,9 @@ exports.activate = function (context) {
     vscode.languages.registerCompletionItemProvider(
       "javascript",
       {
-        provideCompletionItems,
-        resolveCompletionItem,
+        provideCompletionItems
       },
-      "."
+      "h_reg."
     )
   );
 
